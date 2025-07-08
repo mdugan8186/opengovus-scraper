@@ -1,0 +1,17 @@
+# macOS system files
+.DS_Store
+
+# Python cache and artifacts
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Scraper extras (optional)
+extras/
+*.html
+*.png
+*.csv
