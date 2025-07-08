@@ -1,0 +1,991 @@
+<!DOCTYPE html><html lang="en"><head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>New York City Legally Operating Business</title>
+		<meta name="description" content="This dataset includes 150 thousand businesses licensed with City of New York, Department of Consumer Affairs (DCA). 
+							NYC Department of Consumer and Worker Protection (DCWP)—formerly the Department of Consumer Affairs (DCA)—licenses more than 59,000 businesses in more than 50 different industries.
+							Each business is registered with license number, legal business name, dba name, phone, location, license expiration date, etc.">
+		<meta name="robots" content="max-image-preview:large">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+		<style>
+@import url('https://fonts.googleapis.com/css2?family=Belleza&display=swap');
+
+body {
+/* background: #f5f5f5;*/
+	font-family: "Effra", Helvetica, sans-serif;
+	padding: 0;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #3D4351;
+}
+
+h3 {
+	font-weight: 700!important;
+	font-size: 1.25rem!important;
+	padding-top: 0.5rem!important;
+	padding-bottom: 0.5rem!important;
+}
+
+a {
+color: #FF6B6B;
+text-decoration: none;
+}
+a.nav-link {
+color: #568;
+text-decoration: none;
+}
+a:hover {
+color: #ff9a9a;
+text-decoration: none;
+}
+
+.navbar {
+	margin-bottom: 0px;
+}
+
+.nav-stacked > li > a {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.nav-stacked > li.active > a {
+	color: #ff9a9a;
+	background-color:#eee;
+}
+.nav-stacked > li:hover > a {
+	background-color:#eee;
+}
+
+.nav-pills .nav-link {
+	color:#568;
+	background-color:#eee;
+}
+.nav-pills .nav-link.active {
+	background-color:#568;
+}
+.badge {
+	background-color:#568;
+}
+
+.col-sidebar {
+	height: fit-content;
+    overflow-y: auto;
+}
+
+.panel {
+	margin-bottom: 1.5em;
+    background-color: #fff;
+    border: none;
+    /*border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);*/
+}
+
+.pager {
+	margin: 10px 0;
+}
+.table-dl td:first-child {
+	text-align: right;
+	font-weight: bold;
+}
+.table-dl td:first-child {
+	width: 30%;
+}
+
+.table-striped > tbody > tr:first-child > td,
+.table-striped > tbody > tr:first-child > th {
+border: none;
+}
+
+.media-left img {
+	width: 50px;
+	max-height: 50px;
+}
+.media-left {
+	width: 60px;
+}
+
+.bi {
+    width: 0.9em;
+    height: 0.9em;
+    display: inline-block;
+    vertical-align: -0.125em;
+}
+
+.adslot_side { display: block; min-height:970px;height:100%;}
+@media (max-width: 991px) { .adslot_side { display: none; } }
+
+</style>
+			<meta http-equiv="origin-trial" content="AlK2UR5SkAlj8jjdEc9p3F3xuFYlF6LYjAML3EOqw1g26eCwWPjdmecULvBH5MVPoqKYrOfPhYVL71xAXI1IBQoAAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="Amm8/NmvvQfhwCib6I7ZsmUxiSCfOxWxHayJwyU1r3gRIItzr7bNQid6O8ZYaE1GSQTa69WwhPC9flq/oYkRBwsAAACCeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="A9wSqI5i0iwGdf6L1CERNdmsTPgVu44ewj8QxTBYgsv1LCPUVF7YmWOvTappqB1139jAymxUW/RO8zmMqo4zlAAAAACNeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiRmxlZGdlQmlkZGluZ0FuZEF1Y3Rpb25TZXJ2ZXIiLCJleHBpcnkiOjE3MzY4MTI4MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A+d7vJfYtay4OUbdtRPZA3y7bKQLsxaMEPmxgfhBGqKXNrdkCQeJlUwqa6EBbSfjwFtJWTrWIioXeMW+y8bWAgQAAACTeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiRmxlZGdlQmlkZGluZ0FuZEF1Y3Rpb25TZXJ2ZXIiLCJleHBpcnkiOjE3MzY4MTI4MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><script async="" src="https://fundingchoicesmessages.google.com/i/ca-pub-9163602253426716?href=https%3A%2F%2Fopengovus.com%2Fnew-york-business&amp;ers=2"></script><script async="" src="https://fundingchoicesmessages.google.com/f/AGSKWxX1GnKAoxiklfGY3zbe5L9mg5uIZCX3reES4wwZOp6RUTSW3uIXyLlibLFDtNu95oQigp1G9A1A1_ete2OsiDZnu4vADuKRygWW-F08bu8uOWB8CECXbf8GXkqipdwjOE70NhL07Q==?fccs=W251bGwsbnVsbCxudWxsLG51bGwsbnVsbCxudWxsLFsxNzUxNzI0MDIyLDc1NTAwMDAwMF0sbnVsbCxudWxsLG51bGwsW251bGwsWzddXSwiaHR0cHM6Ly9vcGVuZ292dXMuY29tL25ldy15b3JrLWJ1c2luZXNzIixudWxsLFtbMjYsIjIiXSxbOCwiX1hfd2xhek90bGMiXSxbOSwiZW4tVVMiXSxbMjMsIjE3NTE3MjQwMjEiXSxbMTksIjIiXSxbMTcsIlswXSJdLFsyNCwiIl0sWzI1LCJbWzk1MzU5MjYxXV0iXSxbMjksImZhbHNlIl1dXQ"></script><script async="" src="https://fundingchoicesmessages.google.com/f/AGSKWxVD3n4cNbYyOen9b3gbINihTzofSIKqS5s2Vir0fLeUGnAEdX6ZUgJQMRRWmp-QOqhC8PjbGSuGNnh5204NONkaJyxSWbJZtRldo8obCM8BVOYXLDxRMdy1v37GLmKnOvYY6ffNtw==?fccs=W251bGwsbnVsbCxudWxsLG51bGwsbnVsbCxudWxsLFsxNzUxNzI0MDIyLDg1NDAwMDAwMF0sbnVsbCxudWxsLG51bGwsW251bGwsWzcsOV0sbnVsbCwyLG51bGwsImVuIl0sImh0dHBzOi8vb3BlbmdvdnVzLmNvbS9uZXcteW9yay1idXNpbmVzcyIsbnVsbCxbWzI2LCIyIl0sWzgsIl9YX3dsYXpPdGxjIl0sWzksImVuLVVTIl0sWzIzLCIxNzUxNzI0MDIxIl0sWzE5LCIyIl0sWzE3LCJbMF0iXSxbMjQsIiJdLFsyNSwiW1s5NTM1OTI2MV1dIl0sWzI5LCJmYWxzZSJdXV0"></script><script async="" src="https://fundingchoicesmessages.google.com/f/AGSKWxXZVKSosE6yuT6r9q6UB5o7MVg56-bEobDXFddM45un6imgNpXs-w3ZKYpTo_jBvHN81Xb-pNie-GAtth0jFpnGkGwSSUMl8NqPpDo3dGDvPE9qMWgQ0eXxnz7acFwNLGBEYgKjIg==?fccs=W251bGwsbnVsbCxudWxsLG51bGwsbnVsbCxudWxsLFsxNzUxNzI0MDIzLDYxMTAwMDAwMF0sbnVsbCxudWxsLG51bGwsW251bGwsWzcsOSw2XSxudWxsLDIsbnVsbCwiZW4iLG51bGwsbnVsbCxudWxsLG51bGwsbnVsbCwxXSwiaHR0cHM6Ly9vcGVuZ292dXMuY29tL25ldy15b3JrLWJ1c2luZXNzIixudWxsLFtbMjYsIjIiXSxbOCwiX1hfd2xhek90bGMiXSxbOSwiZW4tVVMiXSxbMjMsIjE3NTE3MjQwMjEiXSxbMTksIjIiXSxbMTcsIlswXSJdLFsyNCwiIl0sWzI1LCJbWzk1MzU5MjYxXV0iXSxbMjksImZhbHNlIl1dXQ"></script></head>
+<body aria-hidden="false" style="padding: 0px 0px 120px;">
+		<script src="https://pagead2.googlesyndication.com/pagead/managed/js/adsense/m202507010101/reactive_library_fy2021.js"></script><script src="https://pagead2.googlesyndication.com/pagead/managed/js/adsense/m202507010101/show_ads_impl_fy2021.js"></script><script src="https://partner.googleadservices.com/gampad/cookie.js?domain=opengovus.com&amp;client=partner-pub-9163602253426716&amp;product=SAS&amp;callback=__sasCookie&amp;cookie_types=v1%2Cv2"></script><script async="" src="//www.google-analytics.com/analytics.js"></script><script async="async" src="https://www.google.com/adsense/search/ads.js"></script>
+		<script type="text/javascript" charset="utf-8">
+		(function(g,o){g[o]=g[o]||function(){(g[o]['q']=g[o]['q']||[]).push(
+		arguments)},g[o]['t']=1*new Date})(window,'_googCsa');
+		</script>
+		<script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				
+			<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-H5HB24LB6F"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-H5HB24LB6F');
+		</script>
+	
+
+<nav class="navbar navbar-expand-lg border-bottom bg-light mb-4">
+	<div class="container">
+		<a class="navbar-brand my-logo" href="https://opengovus.com/"><strong><span style="color:darkblue">OPEN</span><span style="color:brown">GOV</span><span style="color:darkred">US</span></strong></a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarContent">
+			<ul class="navbar-nav me-auto">
+							<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Business					</a>
+					<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="https://opengovus.com/money-services-business">Money Services Business Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/motor-carrier">Moter Carriers</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/sam-entity">System for Award Management Entities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/tax-exempt">Charities and Non-Profit Organizations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/edgar">SEC EDGAR Entities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/sba-ppp-loan">SBA Paycheck Protection Program (PPP)</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/sba-eidl">SBA COVID-19 Economic Injury Disaster Loans (EIDL)</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/sba-eidl-advance">SBA Targeted EIDL Advance and Supplemental Targeted Advance</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/sba-rrf">SBA Restaurant Revitalization Fund (RRF)</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/alabama-business">Alabama Business Entities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/alaska-corporation">Alaska Corporation Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/arizona-corporation">Arizona Corporation Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/colorado-business">Colorado Business Entities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/connecticut-business">Connecticut Business Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/delaware-business">Delaware Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/delaware-certified-business">Delaware Certified Business Vendors</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/delaware-license">Delaware Professional and Occupational Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/florida-corporation">Florida Corporations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/florida-fictitious-name">Florida Fictitious Name Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/florida-license">Florida Business and Professional Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/georgia-business">Georgia Business Entities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/indiana-business">Indiana Business Entities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/iowa-business">Iowa Business Entities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/massachusetts-corporation">Massachusetts Corporations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/michigan-license">Michigan Professional and Occupational Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/nevada-corporation">Nevada Corporation Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-orleans-business">New Orleans Occupational Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-york-state-corporation">New York State Corporations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/north-carolina-corporation">North Carolina Corporations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/ohio-business">Ohio Business Entities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/oklahoma-business">Oklahoma Business Entities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/oregon-business">Oregon Business Entities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/rhode-island-business">Rhode Island Business Entities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/rhode-island-license">Rhode Island Professional and Commercial Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/tennessee-business">Tennessee Business Entities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/texas-corporation">Texas Corporation Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/texas-license">Texas Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/texas-taxpayer">Texas Taxpayer Information</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/virginia-business">Virginia Business Entities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/vermont-business">Vermont Business Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/washington-corporation">Washington State Corporations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/west-virginia-business">West Virginia Business Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/albuquerque-business">Albuquerque Business Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/baton-rouge-business">Baton Rouge Business Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/boston-business">Boston Business Certificates</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/buffalo-business">Buffalo Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/chicago-business">Chicago Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/cincinnati-business">Cincinnati Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/colorado-springs-sales-tax-license">Colorado Springs Sales Tax Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/denver-business">Denver Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/detroit-business">Detroit Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/everett-business">Everett Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/gainesville-business">Gainesville Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/hartford-business">Hartford Businesses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/henderson-business">Henderson Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/kansas-city-business">Kansas City</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/las-vegas-business">Las Vegas Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/little-rock-business">Little Rock Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/marin-county-business">Marin County Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/miami-dade-county-business">Miami-Dade County Local Business Tax</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-york-business">New York City</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/orlando-business">Orlando Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/philadelphia-business">Philadelphia Businesses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/providence-business">Providence Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/sacramento-business">Sacramento</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/sacramento-county-business">Sacramento County</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/salt-lake-city-business">Salt Lake City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/seattle-business">Seattle Business License Tax Certificates</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/tacoma-business">Tacoma Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/washington-dc-business">Washington DC Businesses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/washington-dc-certified-business">Washington DC Certified Business Enterprises</a></li>
+										</ul>
+				</li>
+							<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						California					</a>
+					<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="https://opengovus.com/california-corporation">California Corporate Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/california-license">California Professional Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/california-liquor">California Alcoholic Beverage Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/california-contractor-license">California Contractors Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/california-real-estate-license">California Real Estate Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/california-attorney">California Attorneys</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/california-health-facility">California Healthcare Facilities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/california-community-care">California Community Care Facilities</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/adelanto-business">Adelanto Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/artesia-business">Artesia Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/bakersfield-business">Bakersfield Business Tax Certificates</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/belmont-business">Belmont Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/benicia-business">Benicia Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/berkeley-business">Berkeley Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/camarillo-business">Camarillo Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/carpinteria-business">Carpinteria Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/chino-hills-business">Chino Hills Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/colma-business">Colma Town Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/commerce-business">Commerce Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/corona-business">Corona City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/coronado-business">Coronado Business Certificates</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/culver-city-business">Culver City Business Tax Certificates</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/downey-business">Downey Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/el-segundo-business">El Segundo Business Tax Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/el-cajon-business">El Cajon Business Tax Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/el-monte-business">El Monte Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/fairfield-business">Fairfield Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/folsom-business">Folsom Business License Certificates</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/fremont-business">Fremont Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/fresno-business">Fresno City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/gilroy-business">Gilroy Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/glendora-business">Glendora Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/grand-terrace-business">Grand Terrace Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/half-moon-bay-business">Half Moon Bay Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/hayward-business">Hayward City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/hermosa-beach-business">Hermosa Beach Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/huntington-beach-business">Huntington Beach Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/livermore-business">Livermore Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/lodi-business">Lodi City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/long-beach-business">Long Beach Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/los-angeles-business">Los Angeles Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/los-alamitos-business">Los Alamitos Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/los-altos-hills-business">Los Altos Hills Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/lynwood-business">Lynwood Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/maywood-business">Maywood Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/marysville-business">Marysville Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/martinez-business">Martinez Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/milpitas-business">Milpitas Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/monterey-park-business">Monterey Park Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/montebello-business">Montebello Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/moreno-valley-business">Moreno Valley Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/napa-business">Napa City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/national-city-business">National City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/newport-beach-business">Newport Beach Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/norco-business">Norco City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/oakland-business">Oakland City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/orinda-business">Orinda Business Registration Certificates</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/ontario-business">Ontario City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/palmdale-business">Palmdale Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/palo-alto-business">Palo Alto Businesses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/pasadena-business">Pasadena Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/perris-business">Perris Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/pomona-business">Pomona Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/riverside-business">Riverside City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/rocklin-business">Rocklin Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/ross-business">Ross Town Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/roseville-business">Roseville Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/san-anselmo-business">San Anselmo Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/san-diego-business">San Diego</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/san-fernando-business">San Fernando Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/san-francisco-business">San Francisco Registered Business Locations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/san-jose-business">San Jose Business Tax Certificates</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/san-leandro-business">San Leandro Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/san-mateo-business">San Mateo Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/san-rafael-business">San Rafael Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/santa-ana-business">Santa Ana Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/santa-monica-business">Santa Monica Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/sausalito-business">Sausalito Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/scotts-valley-business">Scotts Valley Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/signal-hill-business">Signal Hill Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/simi-valley-business">Simi Valley Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/stanton-business">Stanton City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/stockton-business">Stockton City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/tracy-business">Tracy City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/tustin-business">Tustin Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/upland-business">Upland City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/vacaville-business">Vacaville Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/vallejo-business">Vallejo City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/weed-business">Weed City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/wildomar-business">Wildomar Business Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/winters-business">Winters City Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/whittier-business">Whittier Business Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/yorba-linda-business">Yorba Linda Business Licenses</a></li>
+										</ul>
+				</li>
+							<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Professional Licenses					</a>
+					<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="https://opengovus.com/florida-health-care-practitioner">Florida Health Care Practitioner Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/connecticut-license">Connecticut Licenses</a></li>
+										</ul>
+				</li>
+							<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Disclosure					</a>
+					<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="https://opengovus.com/florida-employee">Florida Employee Salaries</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/georgia-employee">Georgia Employee Salaries</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/illinois-employee">Illinois Employee Salaries</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/illinois-university-employee">Illinois University Employee Salaries</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/iowa-employee">Iowa Employee Salary Book</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/minnesota-employee">Minnesota Employee Payroll Disclosure</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-jersey-employee">New Jersey State Employee Salary</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-jersey-authority-employee">New Jersey Authorities Employee Salary</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-york-state-employee">New York State Employee Salary Information</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/south-carolina-employee">South Carolina Government Employ Salaries</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/texas-employee">Texas Government Employ Salaries</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/washintong-employee">Washington Employ Salaries</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/albuquerque-employee">Albuquerque Employee Salaries</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/boston-employee">Boston Employee Earnings</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/chicago-employee">Chicago Employee Salaries and Earnings</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/las-vegas-employee">Las Vegas Employee Compensations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/los-angeles-county-employee">Los Angeles County</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-york-employee">New York City Payroll Disclosure</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/philadelphia-employee">Philadelphia</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/phoenix-employee">Phoenix City Staff Salaries</a></li>
+										</ul>
+				</li>
+							<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Property					</a>
+					<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="https://opengovus.com/boston-property">Boston</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/cook-county-property">Chicago &amp; Cook County Property Assessment</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/fulton-county-property">Fulton County (Georgia) Property Assessment</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/los-angeles-county-property">Los Angeles County</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-york-property">New York City Property Assessment</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-york-state-property">New York State Property Assessment</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/philadelphia-property">Philadelphia</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/richmond-property">Richmond (Virginia) Property Assessment</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/san-francisco-property">San Francisco</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/san-diego-county-property">San Diego County Property Assessment</a></li>
+										</ul>
+				</li>
+							<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Restaurant					</a>
+					<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="https://opengovus.com/florida-food-service">Florida Hotels and Restaurants</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/albuquerque-restaurant">Albuquerque Restaurant Inspections</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/austin-restaurant">Austin</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/clark-county-restaurant">Las Vegas &amp; Clark County, Nevada</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/king-county-food-service">Seattle &amp; King County, Washington</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/los-angeles-county-restaurant">Los Angeles County</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-york-restaurant">New York City</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-york-state-food-service">New York State</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/san-francisco-restaurant">San Francisco</a></li>
+										</ul>
+				</li>
+							<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Liquor					</a>
+					<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="https://opengovus.com/colorado-liquor">Colorado Liquor Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-york-state-liquor">NYS Liquor Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/missouri-liquor">Missouri Alcohol Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/iowa-liquor">Iowa Liquor Stores</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/illinois-liquor">Illinois Liquor Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/washington-dc-liquor">Washington DC Liquor Licenses</a></li>
+										</ul>
+				</li>
+							<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Other					</a>
+					<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="https://opengovus.com/trademark">USPTO Trademark Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/firearms-license">Federal Firearms Licensees</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/arizona-real-estate-license">Arizona Real Estate Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/texas-real-estate-license">Texas Real Estate Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/west-virginia-real-estate-license">West Virginia Real Estate Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/missouri-license">Missouri Professional Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/alaska-trademark">Alaska Trademark Registrations</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/louisiana-notary">Louisiana Notaries</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/physician">Physicians</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/hospital">Hospitals</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/health-center">HRSA Health Centers</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/child-care">Child Care Centers</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/public-school">Public Schools</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/connecticut-child-care">Connecticut Child Care Programs and Youth Camps</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/colorado-charity">Colorado Charity</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/colorado-trade-name">Colorado Trade Name</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-york-state-attorney">NYS Attorneys</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-york-state-food-store">NYS Retail Food Stores</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-york-state-real-estate-license">NYS Real Estate Licenses</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-york-state-lobbyist">NYS Lobbyist Disclosures</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/new-york-state-tax-return-preparer">NYS Tax Return Preparers &amp; Facilitators</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/texas-lawyer">Texas Lawyers</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/washington-lawyer">Washington Lawyers</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/washington-health-care-provider">Washington Health Care Providers</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/los-angeles-crime">Los Angeles Crime Data</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/iowa-insurance-producer">Iowa Licensed Insurance Producers</a></li>
+											<li><a class="dropdown-item" href="https://opengovus.com/post">Post New Business</a></li>
+										</ul>
+				</li>
+					
+			</ul>
+			
+		</div>
+	</div>
+</nav>
+
+<div class="container" style="height: auto !important;">
+<div class="row" style="height: auto !important;">
+	<div style="text-align: center; height: auto !important;">
+	<div class="panel" style="text-align:center">
+	<ins class="adsbygoogle" style="display: block; height: 280px;" data-ad-client="ca-pub-9163602253426716" data-ad-slot="4314939228" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done" data-ad-status="unfilled"><div id="aswift_0_host" style="border: none; height: 280px; width: 1116px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: visible;"><iframe id="aswift_0" name="aswift_0" browsingtopics="true" style="left:0;position:absolute;top:0;border:0;width:1116px;height:280px;min-height:auto;max-height:none;min-width:auto;max-width:none;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="1116" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting; run-ad-auction" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-9163602253426716&amp;output=html&amp;h=280&amp;slotname=4314939228&amp;adk=302258836&amp;adf=4134371643&amp;pi=t.ma~as.4314939228&amp;w=1116&amp;abgtt=9&amp;fwrn=4&amp;fwrnh=100&amp;lmt=1751724021&amp;rafmt=1&amp;format=1116x280&amp;url=https%3A%2F%2Fopengovus.com%2Fnew-york-business&amp;fwr=0&amp;fwrattr=true&amp;rpe=1&amp;resp_fmts=3&amp;wgl=1&amp;uach=WyJtYWNPUyIsIjE1LjUuMCIsImFybSIsIiIsIjEzNi4wLjcxMDMuMjUiLG51bGwsMCxudWxsLCI2NCIsW1siTm90LkEvQnJhbmQiLCI5OS4wLjAuMCJdLFsiQ2hyb21pdW0iLCIxMzYuMC43MTAzLjI1Il1dLDBd&amp;dt=1751724021406&amp;bpp=9&amp;bdt=263&amp;idt=167&amp;shv=r20250630&amp;mjsv=m202507010101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie_enabled=1&amp;eoidce=1&amp;correlator=3031505218649&amp;frm=20&amp;pv=2&amp;u_tz=-240&amp;u_his=2&amp;u_h=720&amp;u_w=1280&amp;u_ah=720&amp;u_aw=1280&amp;u_cd=30&amp;u_sd=1&amp;dmc=8&amp;adx=75&amp;ady=81&amp;biw=1265&amp;bih=720&amp;scr_x=0&amp;scr_y=0&amp;eid=95360549%2C31093234%2C95332925%2C95353387%2C95362656%2C95365226%2C95365235%2C42533294%2C95359265%2C95365115%2C95365797&amp;oid=2&amp;pvsid=5558759904506744&amp;tmod=572913864&amp;uas=0&amp;nvt=1&amp;fc=896&amp;brdim=112%2C60%2C112%2C60%2C1280%2C0%2C1282%2C800%2C1280%2C720&amp;vis=1&amp;rsz=%7C%7CeE%7C&amp;abl=CS&amp;pfx=0&amp;fu=128&amp;bc=31&amp;bz=1&amp;td=1&amp;tdf=2&amp;psd=W251bGwsbnVsbCxudWxsLDNd&amp;nt=1&amp;ifi=1&amp;uci=a!1&amp;fsb=1&amp;dtd=178" data-google-container-id="a!1" tabindex="0" title="Advertisement" aria-label="Advertisement" data-google-query-id="CP2IxMDwpY4DFUwtiAkdY_0ffQ" data-load-complete="true"></iframe></div></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
+	</div>
+</div>
+<div class="row" style="height: auto !important;">
+	<div class="col-md-12 col-lg-10" style="height: auto !important;">
+		<h1 class="fs-1 fw-semibold pb-3">New York City Legally Operating Business</h1><div class="panel" style="text-align:center">
+	<ins class="adsbygoogle" style="display: block; height: 280px;" data-ad-client="ca-pub-9163602253426716" data-ad-slot="3182309629" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done" data-ad-status="unfilled"><div id="aswift_1_host" style="border: none; height: 280px; width: 926px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: visible;"><iframe id="aswift_1" name="aswift_1" browsingtopics="true" style="left:0;position:absolute;top:0;border:0;width:926px;height:280px;min-height:auto;max-height:none;min-width:auto;max-width:none;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="926" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting; run-ad-auction" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-9163602253426716&amp;output=html&amp;h=280&amp;slotname=3182309629&amp;adk=825587058&amp;adf=2665882539&amp;pi=t.ma~as.3182309629&amp;w=926&amp;abgtt=9&amp;fwrn=4&amp;fwrnh=100&amp;lmt=1751724021&amp;rafmt=1&amp;format=926x280&amp;url=https%3A%2F%2Fopengovus.com%2Fnew-york-business&amp;fwr=0&amp;fwrattr=true&amp;rpe=1&amp;resp_fmts=3&amp;wgl=1&amp;uach=WyJtYWNPUyIsIjE1LjUuMCIsImFybSIsIiIsIjEzNi4wLjcxMDMuMjUiLG51bGwsMCxudWxsLCI2NCIsW1siTm90LkEvQnJhbmQiLCI5OS4wLjAuMCJdLFsiQ2hyb21pdW0iLCIxMzYuMC43MTAzLjI1Il1dLDBd&amp;dt=1751724021415&amp;bpp=1&amp;bdt=271&amp;idt=172&amp;shv=r20250630&amp;mjsv=m202507010101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie_enabled=1&amp;eoidce=1&amp;prev_fmts=1116x280&amp;correlator=3031505218649&amp;frm=20&amp;pv=1&amp;u_tz=-240&amp;u_his=2&amp;u_h=720&amp;u_w=1280&amp;u_ah=720&amp;u_aw=1280&amp;u_cd=30&amp;u_sd=1&amp;dmc=8&amp;adx=75&amp;ady=457&amp;biw=1265&amp;bih=720&amp;scr_x=0&amp;scr_y=0&amp;eid=95360549%2C31093234%2C95332925%2C95353387%2C95362656%2C95365226%2C95365235%2C42533294%2C95359265%2C95365115%2C95365797&amp;oid=2&amp;pvsid=5558759904506744&amp;tmod=572913864&amp;uas=0&amp;nvt=1&amp;fc=896&amp;brdim=112%2C60%2C112%2C60%2C1280%2C0%2C1282%2C800%2C1280%2C720&amp;vis=1&amp;rsz=%7C%7CeE%7C&amp;abl=CS&amp;pfx=0&amp;fu=128&amp;bc=31&amp;bz=1&amp;td=1&amp;tdf=2&amp;psd=W251bGwsbnVsbCxudWxsLDNd&amp;nt=1&amp;ifi=2&amp;uci=a!2&amp;fsb=1&amp;dtd=174" data-google-container-id="a!2" tabindex="0" title="Advertisement" aria-label="Advertisement" data-google-query-id="CIP_w8DwpY4DFWosiAkdld8dQQ" data-load-complete="true"></iframe></div></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
+<div class="panel" id="overview" style="height: auto !important;"><h2 class="fs-3 fw-light py-2 border-bottom">Overview </h2><p class="lead">This dataset includes 150 thousand businesses licensed with City of New York, Department of Consumer Affairs (DCA). 
+							NYC Department of Consumer and Worker Protection (DCWP)—formerly the Department of Consumer Affairs (DCA)—licenses more than 59,000 businesses in more than 50 different industries.
+							Each business is registered with license number, legal business name, dba name, phone, location, license expiration date, etc.</p>	<form action="https://opengovus.com/new-york-business">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Search Businesses" name="q" style="">
+		</div>
+	</form>
+<h3>Dataset Information</h3><div class="table-responsive"><table class="table table-striped table-hover table-dl"><tbody><tr><td>Jurisdiction</td><td>City of New York</td></tr><tr><td>Data Provider</td><td>City of New York, Department of Consumer Affairs (DCA)</td></tr></tbody></table><div class="google-auto-placed" style="width: 100%; height: auto; clear: both; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9163602253426716" data-adsbygoogle-status="done" style="display: block; margin: 10px auto 16px; background-color: transparent; height: 60px;" data-ad-status="filled"><div id="aswift_7_host" style="border: none; height: 60px; width: 926px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: visible;"><iframe id="aswift_7" name="aswift_7" browsingtopics="true" style="left:0;position:absolute;top:0;border:0;width:926px;height:60px;min-height:auto;max-height:none;min-width:auto;max-width:none;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="926" height="60" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting; run-ad-auction" src="https://googleads.g.doubleclick.net/pagead/ads?gdpr=0&amp;client=ca-pub-9163602253426716&amp;output=html&amp;h=60&amp;adk=2706008268&amp;adf=1553905576&amp;pi=t.aa~a.207680649~rp.4&amp;w=926&amp;abgtt=9&amp;fwrn=4&amp;fwrnh=100&amp;lmt=1751724022&amp;rafmt=1&amp;to=qs&amp;pwprc=3384567415&amp;format=926x60&amp;url=https%3A%2F%2Fopengovus.com%2Fnew-york-business&amp;fwr=0&amp;pra=3&amp;rpe=1&amp;resp_fmts=3&amp;wgl=1&amp;fa=40&amp;uach=WyJtYWNPUyIsIjE1LjUuMCIsImFybSIsIiIsIjEzNi4wLjcxMDMuMjUiLG51bGwsMCxudWxsLCI2NCIsW1siTm90LkEvQnJhbmQiLCI5OS4wLjAuMCJdLFsiQ2hyb21pdW0iLCIxMzYuMC43MTAzLjI1Il1dLDBd&amp;dt=1751724022486&amp;bpp=1&amp;bdt=1342&amp;idt=-M&amp;shv=r20250630&amp;mjsv=m202507010101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie=ID%3D0c879164d4e35a19%3AT%3D1751724021%3ART%3D1751724021%3AS%3DALNI_MYvxvvJbWqbIORudgwutdcnU6WJpg&amp;gpic=UID%3D00000f1970223abe%3AT%3D1751724021%3ART%3D1751724021%3AS%3DALNI_MbVURcjOXcYwd0r8gJ4VV4uY6Os6A&amp;eo_id_str=ID%3Dc8e7c82edfe0cd9d%3AT%3D1751724021%3ART%3D1751724021%3AS%3DAA-AfjYJRSKvGQcGPbPBKIRfvmPI&amp;prev_fmts=1116x280%2C926x280%2C926x280%2C166x600%2C0x0&amp;nras=2&amp;correlator=3031505218649&amp;frm=20&amp;pv=1&amp;u_tz=-240&amp;u_his=2&amp;u_h=720&amp;u_w=1280&amp;u_ah=720&amp;u_aw=1280&amp;u_cd=30&amp;u_sd=1&amp;dmc=8&amp;adx=75&amp;ady=1169&amp;biw=1265&amp;bih=720&amp;scr_x=0&amp;scr_y=0&amp;eid=95360549%2C31093234%2C95332925%2C95353387%2C95362656%2C95365226%2C95365235%2C42533294%2C95359265%2C95365115%2C95365797&amp;oid=2&amp;psts=AOrYGskl4U6iSLU4PeEwmCVXrW87J3WTZCo_5tPSM8h7fAP0m0jNXQuv62YvmH3vvqVNfhqULqU3YxXp8dEvndLfrk8TK7Ln%2CAOrYGsmXcc_Yc489yteuSOFJSmjuWZ_8MT1Kw2Y7VFZYseSVqnqhpIH6OpiMHqmuNcI0rzvQLMoTg-CMlkbCMyi-fcxm0ZA&amp;pvsid=5558759904506744&amp;tmod=572913864&amp;uas=3&amp;nvt=1&amp;fc=896&amp;brdim=112%2C60%2C112%2C60%2C1280%2C0%2C1282%2C800%2C1280%2C720&amp;vis=1&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=128&amp;bc=31&amp;bz=1&amp;td=1&amp;tdf=2&amp;psd=W251bGwsbnVsbCxudWxsLDNd&amp;nt=1&amp;ifi=8&amp;uci=a!8&amp;btvi=2&amp;fsb=1&amp;dtd=271" data-google-container-id="a!8" tabindex="0" title="Advertisement" aria-label="Advertisement" data-google-query-id="CNfphsHwpY4DFYQPiAkd9cY3Xw" data-load-complete="true"></iframe></div></ins></div></div></div><div class="panel" style="text-align:center">
+	<ins class="adsbygoogle" style="display: block; height: 280px;" data-ad-client="ca-pub-9163602253426716" data-ad-slot="4659042822" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done" data-ad-status="filled"><div id="aswift_2_host" style="border: none; height: 280px; width: 926px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: visible;"><iframe id="aswift_2" name="aswift_2" browsingtopics="true" style="left:0;position:absolute;top:0;border:0;width:926px;height:280px;min-height:auto;max-height:none;min-width:auto;max-width:none;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="926" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting; run-ad-auction" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-9163602253426716&amp;output=html&amp;h=280&amp;slotname=4659042822&amp;adk=993387995&amp;adf=1873231546&amp;pi=t.ma~as.4659042822&amp;w=926&amp;abgtt=9&amp;fwrn=4&amp;fwrnh=100&amp;lmt=1751724021&amp;rafmt=1&amp;format=926x280&amp;url=https%3A%2F%2Fopengovus.com%2Fnew-york-business&amp;fwr=0&amp;fwrattr=true&amp;rpe=1&amp;resp_fmts=3&amp;wgl=1&amp;uach=WyJtYWNPUyIsIjE1LjUuMCIsImFybSIsIiIsIjEzNi4wLjcxMDMuMjUiLG51bGwsMCxudWxsLCI2NCIsW1siTm90LkEvQnJhbmQiLCI5OS4wLjAuMCJdLFsiQ2hyb21pdW0iLCIxMzYuMC43MTAzLjI1Il1dLDBd&amp;dt=1751724021416&amp;bpp=1&amp;bdt=273&amp;idt=199&amp;shv=r20250630&amp;mjsv=m202507010101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie_enabled=1&amp;eoidce=1&amp;prev_fmts=1116x280%2C926x280&amp;correlator=3031505218649&amp;frm=20&amp;pv=1&amp;u_tz=-240&amp;u_his=2&amp;u_h=720&amp;u_w=1280&amp;u_ah=720&amp;u_aw=1280&amp;u_cd=30&amp;u_sd=1&amp;dmc=8&amp;adx=75&amp;ady=1193&amp;biw=1265&amp;bih=720&amp;scr_x=0&amp;scr_y=0&amp;eid=95360549%2C31093234%2C95332925%2C95353387%2C95362656%2C95365226%2C95365235%2C42533294%2C95359265%2C95365115%2C95365797&amp;oid=2&amp;pvsid=5558759904506744&amp;tmod=572913864&amp;uas=0&amp;nvt=1&amp;fc=896&amp;brdim=112%2C60%2C112%2C60%2C1280%2C0%2C1282%2C800%2C1280%2C720&amp;vis=1&amp;rsz=%7C%7CeEbr%7C&amp;abl=CS&amp;pfx=0&amp;fu=128&amp;bc=31&amp;bz=1&amp;td=1&amp;tdf=2&amp;psd=W251bGwsbnVsbCxudWxsLDNd&amp;nt=1&amp;ifi=3&amp;uci=a!3&amp;btvi=1&amp;fsb=1&amp;dtd=200" data-google-container-id="a!3" tabindex="0" title="Advertisement" aria-label="Advertisement" data-google-query-id="CMqGxMDwpY4DFewQiAkdM5sS6A" data-load-complete="true"></iframe></div></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
+<div class="panel" id="search-result"><h2 class="fs-3 fw-light py-2 border-bottom">Search Result </h2>
+<table class="table table-hover table-condensed table-sm table-responsive table-striped">
+	<tbody><tr><th>Business Name</th><th>Address</th><th>License Category</th><th>License Creation Date</th></tr>		<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115260">Wakefield &amp; Associates, LLC</a></td>
+			<td>Calle 50 Piso 32 Global Bank, Panama</td><td>Debt Collection Agency</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115261">Wakefield &amp; Associates, LLC</a></td>
+			<td>De La Rotonda Centroamerica300mts abajoEdifico Nestrix, Managua</td><td>Debt Collection Agency</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115276">Inder Multani Construction Inc</a></td>
+			<td>8906 241st St, Bellerose, NY 11426</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115285">KB NY Consulting L.L.C.</a></td>
+			<td>8940 151st Ave, Howard Beach, NY 11414</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115272">Poly Auto Repair LLC</a></td>
+			<td>9325 Ditmas Ave, Brooklyn, NY 11236</td><td>Secondhand Dealer - General</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115279">Brother's General Contracting Corp</a></td>
+			<td>9414 87th St, 7414 87th St, Ozone Park, NY 11416</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115281">Privlux Inc</a></td>
+			<td>96 Union Rd, Spring Valley, NY 10977</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115263">Paco Meat &amp; Fruit Market Corp</a></td>
+			<td>744 E Tremont Ave, Bronx, NY 10457</td><td>Stoop Line Stand</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115280">Quick Cooling And Heating LLC</a></td>
+			<td>64 E Ridgewood Ave, Paramus, NJ 07652</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115264-2">Manhattan Exotic Corp.</a></td>
+			<td>651 Manhattan Ave, Brooklyn, NY 11222</td><td>Tobacco Retail Dealer</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115277">Resurrection Construction Inc</a></td>
+			<td>681 Rockaway Pkwy, Brooklyn, NY 11236</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115282">S&amp;S Renovations Inc.</a></td>
+			<td>7 Horton Rd, Yorktown Heights, NY 10598</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115256">Tech Vices Inc</a></td>
+			<td>3003 Webster Ave, Bronx, NY 10458</td><td>Electronics Store</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115288">Ojt Construction Corp</a></td>
+			<td>2230 Grand Concourse, Bronx, NY 10457</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115265">Aaa Renovation Corp</a></td>
+			<td>23 6th Ave, New Hyde Park, NY 11040</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115271">Stenco Construction Inc</a></td>
+			<td>2317 Bell Blvd, Bayside, NY 11360</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115253">Kedy Amigos Car Wash Corp.</a></td>
+			<td>1199 Fulton Ave, Bronx, NY 10456</td><td>Car Wash</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115284">K &amp; K Industrial Welders LLC</a></td>
+			<td>11127 203rd St, Saint Albans, NY 11412</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115283">Gk Group Construction Corp</a></td>
+			<td>11 N 4th St, New Hyde Park, NY 11040</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115289">HealDi LLC</a></td>
+			<td>1178 Broadway, #3479, New York, NY 10001</td><td>Employment Agency</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115269-2">3rd Street Deli Inc.</a></td>
+			<td>206 7th Ave, Brooklyn, NY 11215</td><td>Tobacco Retail Dealer</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115278">B &amp; G Construction · Bhalli Construction Inc</a></td>
+			<td>20 Bay 34th St, Brooklyn, NY 11214</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115286">Reliable Development and Construction LLC</a></td>
+			<td>560 Schenectady Ave, Brooklyn, NY 11203</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115274">Michaels Furniture Inc</a></td>
+			<td>5632 Myrtle Ave, Ridgewood, NY 11385</td><td>Secondhand Dealer - General</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115287">Gigi's Home Improvement, LLC</a></td>
+			<td>5680 Broadway, Bronx, NY 10463</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115270">Abiding Home Improvement Inc</a></td>
+			<td>14218 58th Rd, Flushing, NY 11355</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115254">Galaxy Latino Gift Shop Corp</a></td>
+			<td>4104 5th Ave, Brooklyn, NY 11232</td><td>Secondhand Dealer - General</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115266">24 Hr Park Corp</a></td>
+			<td>3835 10th Ave, New York, NY 10034</td><td>Parking Lot</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115267">Develop Ny Construction Corp</a></td>
+			<td>3623 Avenue I, Brooklyn, NY 11210</td><td>Home Improvement Contractor</td><td>2023-07-21</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115251">C&amp;I General Construction LLC</a></td>
+			<td>3252 103rd St, East Elmhurst, NY 11369</td><td>Home Improvement Contractor</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115224">New York Yankees Foundation Inc.</a></td>
+			<td>1 E 161st St, Bronx, NY 10451</td><td>Games of Chance</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115226-2">South Beach Deli Corp.</a></td>
+			<td>125 Olympia Blvd, Staten Island, NY 10305</td><td>Electronic Cigarette Dealer</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115229">Woodstack Trim Corp</a></td>
+			<td>2334 Knapp St, Brooklyn, NY 11229</td><td>Home Improvement Contractor</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115242">York-Oscar Construction Development LLC.</a></td>
+			<td>238 York Ave, Staten Island, NY 10301</td><td>Home Improvement Contractor</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115231">Luxury Marble and Granite LLC</a></td>
+			<td>2391 Forest Ave, Staten Island, NY 10303</td><td>Home Improvement Contractor</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115218">Savinovich Construction</a></td>
+			<td>244 W 106th St, New York, NY 10025</td><td>Home Improvement Contractor</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115248">Wwi Contracting Corp</a></td>
+			<td>2824 Steinway St, Astoria, NY 11103</td><td>Home Improvement Contractor</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115245">Keystone Builders Usa Inc</a></td>
+			<td>13020 116th Ave, South Ozone Park, NY 11420</td><td>Home Improvement Contractor</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115217">Wrench Auto Repairs · Shah Petroleum Inc</a></td>
+			<td>13420 Rockaway Blvd, South Ozone Park, NY 11420</td><td>Secondhand Dealer - General</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115241">I N Contractors Inc</a></td>
+			<td>1937 Mayflower Ave, Bronx, NY 10461</td><td>Home Improvement Contractor</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115243">Gsmc Contracting Inc.</a></td>
+			<td>205 Grand St, Croton, NY 10520</td><td>Home Improvement Contractor</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115238">Nt General Construction LLC</a></td>
+			<td>1909 Bleecker St, Ridgewood, NY 11385</td><td>Home Improvement Contractor</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115216">Gamestop #7835 · Gamestop, Inc</a></td>
+			<td>174 Broadway, New York, NY 10038</td><td>Secondhand Dealer - General</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115244">Diamond Standard Recycling LLC</a></td>
+			<td>565 5th Ave, New York, NY 10017</td><td>Secondhand Dealer - General</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115222">Y&amp;B Locksmith, Inc.</a></td>
+			<td>420 Kingston Ave, Brooklyn, NY 11225</td><td>Secondhand Dealer - General</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115237">Jah Pro Roofing LLC</a></td>
+			<td>51 Grandview Dr, Latham, NY 12110</td><td>Home Improvement Contractor</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115219">Yi 86 Corp</a></td>
+			<td>524 Columbus Ave, New York, NY 10024</td><td>Stoop Line Stand</td><td>2023-07-20</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115208">United Roofing and Waterproofing · United General Construction LLC</a></td>
+			<td>416 E 8th St, Brooklyn, NY 11218</td><td>Home Improvement Contractor</td><td>2023-07-19</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115215">Ceca Management LLC</a></td>
+			<td>1260 Elder Ave, Bronx, NY 10472</td><td>Home Improvement Contractor</td><td>2023-07-19</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115211">Castillo, Francisco</a></td>
+			<td>1274 Morrison Ave, Bronx, NY 10472</td><td>Secondhand Dealer - General</td><td>2023-07-19</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115188">Argo Construction Corp</a></td>
+			<td>95 Chestnut Ridge Rd, Montvale, NJ 07645</td><td>Home Improvement Contractor</td><td>2023-07-19</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115182">Blvd Gold Buyers Inc</a></td>
+			<td>97-21 Queens Blvd, Rego Park, NY 11374</td><td>Secondhand Dealer - General</td><td>2023-07-19</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115197">Cell-Tech · Es Wireless Network Inc</a></td>
+			<td>81 Church Ave, Brooklyn, NY 11218</td><td>Electronic &amp; Appliance Service</td><td>2023-07-19</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115195">Five Gates PTY LLC</a></td>
+			<td>33 Sugar Maple Dr, Roslyn, NY 11576</td><td>Home Improvement Contractor</td><td>2023-07-19</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115189">Especially For You · Breast Cancer-The Next Step, Inc</a></td>
+			<td>3060 Crescent St, Astoria, NY 11102</td><td>Dealer In Products</td><td>2023-07-19</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115214">Renewal with Grace Inc.</a></td>
+			<td>37 Coachman Ln, Levittown, NY 11756</td><td>Home Improvement Contractor</td><td>2023-07-19</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115184">La Placita-Fulton Corp</a></td>
+			<td>2810 Fulton St, Brooklyn, NY 11207</td><td>Stoop Line Stand</td><td>2023-07-19</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115191">Swish · Swift Inc.</a></td>
+			<td>2918 Avenue N, Brooklyn, NY 11210</td><td>Third Party Food Delivery</td><td>2023-07-19</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115168">Kenny Can Do It · KLJ Remodeling, Inc.</a></td>
+			<td>265 Sunrise Hwy, Rockville Centre, NY 11570</td><td>Home Improvement Contractor</td><td>2023-07-18</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115154-2">Bliss Convenience Inc</a></td>
+			<td>4719 Queens Blvd, Sunnyside, NY 11104</td><td>Tobacco Retail Dealer</td><td>2023-07-18</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115147">Longhorn Asset Management LLC</a></td>
+			<td>12700 Hillcrest Rd, Dallas, TX 75230</td><td>Debt Collection Agency</td><td>2023-07-18</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115172-2">Kiara Deli &amp; Grocery Food Corp</a></td>
+			<td>11002 Guy R Brewer Blvd, Jamaica, NY 11433</td><td>Tobacco Retail Dealer</td><td>2023-07-18</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115164-2">Amg Retail I LLC</a></td>
+			<td>1 E 233rd St, Bronx, NY 10470</td><td>Electronic Cigarette Dealer</td><td>2023-07-18</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115149">Ak Dme Inc</a></td>
+			<td>100 Church St, New York, NY 10007</td><td>Dealer In Products</td><td>2023-07-18</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115157">1095 East Tremont LLC</a></td>
+			<td>1095 E Tremont Ave, Bronx, NY 10460</td><td>Car Wash</td><td>2023-07-18</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115180">Home Squirrel Ny LLC</a></td>
+			<td>116 Avery Ave, Patchogue, NY 11772</td><td>Home Improvement Contractor</td><td>2023-07-18</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115169-2">Mukti 590 Petroleum Inc</a></td>
+			<td>119 Bruckner Blvd, Bronx, NY 10454</td><td>Tobacco Retail Dealer</td><td>2023-07-18</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115176">M Auto Collision and Repair LLC</a></td>
+			<td>3631a 22nd St, Astoria, NY 11106</td><td>Secondhand Dealer - General</td><td>2023-07-18</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115152">100 Un Plaza Garage LLC</a></td>
+			<td>329 E 48th St, New York, NY 10017</td><td>Garage</td><td>2023-07-18</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115151">333 East 34th Garage LLC</a></td>
+			<td>333 E 34th St, New York, NY 10016</td><td>Garage and Parking Lot</td><td>2023-07-18</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115175">Valet auto spa · Valet Auto Inc</a></td>
+			<td>1701 Avenue Z, Brooklyn, NY 11235</td><td>Car Wash</td><td>2023-07-18</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115130">Jamaica Supplies 1 Inc.</a></td>
+			<td>20520 Jamaica Ave, Hollis, NY 11423</td><td>Dealer In Products</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115111">T&amp;K Alridge Home Improvement LLC</a></td>
+			<td>219 E 92nd St, Brooklyn, NY 11212</td><td>Home Improvement Contractor</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115125-2">Natural Farm Market Corp.</a></td>
+			<td>472 Wilson Ave, Brooklyn, NY 11221</td><td>Tobacco Retail Dealer</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115129-2">Arkan Food Corp</a></td>
+			<td>477 Malcolm X Blvd, New York, NY 10037</td><td>Electronic Cigarette Dealer</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115104-2">Gorkha Mini Mart Inc</a></td>
+			<td>8542 Grand Ave, Elmhurst, NY 11373</td><td>Tobacco Retail Dealer</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115133">Ej &amp; S Contracting Corp</a></td>
+			<td>901 Newkirk Ave, 901 Newkirk Ave, Brooklyn, NY 11230</td><td>Home Improvement Contractor</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115103-2">Sakman Deli On 4th Corp.</a></td>
+			<td>6821 4th Ave, Brooklyn, NY 11220</td><td>Tobacco Retail Dealer</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115135">Renovations by CMT · Christine Marie Tropea LLC</a></td>
+			<td>70 Spinnaker Ct, Bayville, NJ 08721</td><td>Home Improvement Contractor</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115139">Mp West 95 Parking LLC</a></td>
+			<td>70 W 95th St, New York, NY 10025</td><td>Garage</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115143">M&amp;E Flooring LLC</a></td>
+			<td>716 Polonia Ave, Elizabeth, NJ 07202</td><td>Home Improvement Contractor</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115122">MV Masonry &amp; More LLC</a></td>
+			<td>266 N Washington St, Sleepy Hollow, NY 10591</td><td>Home Improvement Contractor</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115121">Impex Vision Inc.</a></td>
+			<td>344 Knickerbocker Ave, Brooklyn, NY 11237</td><td>Secondhand Dealer - General</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115127">Montenegro Home Improvement Corp</a></td>
+			<td>4124 39th St, Sunnyside, NY 11104</td><td>Home Improvement Contractor</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115126">Propark America New York LLC</a></td>
+			<td>1 Jfk International Airport, Jamaica, NY 11430</td><td>Parking Lot</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115120-2">Jc Deli &amp; Grill II Grocery Corp.</a></td>
+			<td>1004 Flushing Ave, Brooklyn, NY 11237</td><td>Tobacco Retail Dealer</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115141">Mp West 90 Parking LLC</a></td>
+			<td>101 W 90th St, New York, NY 10024</td><td>Garage</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115117-2">Elevated Convenience Corp.</a></td>
+			<td>13201 Liberty Ave, South Richmond Hill, NY 11419</td><td>Tobacco Retail Dealer</td><td>2023-07-17</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115096-1">N &amp; L Grocery Store Inc</a></td>
+			<td>1551 Sheridan Ave, Bronx, NY 10457</td><td>Tobacco Retail Dealer</td><td>2023-07-14</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115080">Us Mobile Care Medical Supply LLC</a></td>
+			<td>14 Wall St, New York, NY 10005</td><td>Dealer In Products</td><td>2023-07-14</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115089-2">728 Organic Deli Grocery Inc.</a></td>
+			<td>728 Driggs Ave, Brooklyn, NY 11211</td><td>Electronic Cigarette Dealer</td><td>2023-07-14</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115086-2">Spoils &amp; Oils Convenience Corp.</a></td>
+			<td>63 Avenue D, New York, NY 10009</td><td>Electronic Cigarette Dealer</td><td>2023-07-14</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115087">Apex Labor Solutions LLC</a></td>
+			<td>471 N Broadway, Jericho, NY 11753</td><td>Construction Labor Provider</td><td>2023-07-14</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115078">Amtel NY LLC</a></td>
+			<td>5723 Main St, Flushing, NY 11355</td><td>Electronics Store</td><td>2023-07-14</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115093">LMB Services LLC</a></td>
+			<td>4205 216th St, Bayside, NY 11361</td><td>Home Improvement Contractor</td><td>2023-07-14</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115077">Laz Parking New York/New Jersey, LLC</a></td>
+			<td>185 Pacific St, Brooklyn, NY 11201</td><td>Garage</td><td>2023-07-14</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115076">New 786 Ny Parking Corp</a></td>
+			<td>187 Kent Ave, Brooklyn, NY 11249</td><td>Garage</td><td>2023-07-14</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115079">Amtel NY LLC</a></td>
+			<td>18901 Linden Blvd, Saint Albans, NY 11412</td><td>Electronics Store</td><td>2023-07-14</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115083-2">108 Columbia Smoke Shop Inc</a></td>
+			<td>974 Amsterdam Ave, New York, NY 10025</td><td>Electronic Cigarette Dealer</td><td>2023-07-14</td>		</tr>
+				<tr>
+			<td><a href="https://opengovus.com/new-york-business/2115095">Brotherhood Renovation Corp</a></td>
+			<td>9522 102nd St, Ozone Park, NY 11416</td><td>Home Improvement Contractor</td><td>2023-07-14</td>		</tr>
+			<tr>
+		<td colspan="4">
+			<nav>
+				<ul class="pagination mb-0">
+											<li class="page-item mx-auto"><a class="page-link" rel="nofollow" href="https://opengovus.com/new-york-business?page=2">Next Page</a></li>
+										</ul>
+			</nav>
+		</td>
+	</tr>
+	</tbody></table>
+</div><div class="panel" style="text-align:center">
+	<ins class="adsbygoogle" style="display: block; height: 280px;" data-ad-client="ca-pub-9163602253426716" data-ad-slot="6206309625" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done"><div id="aswift_3_host" style="border: none; height: 280px; width: 926px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;"></div></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
+<div class="panel" style="text-align:center">
+	<div id="afscontainer1"><iframe frameborder="0" marginwidth="0" marginheight="0" allowtransparency="true" scrolling="no" width="100%" name="master-a-1|{&quot;name&quot;:&quot;master-1&quot;,&quot;master-a-1&quot;:{&quot;container&quot;:&quot;afscontainer1&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;s&quot;,&quot;adLoadedCallback&quot;:null,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;},&quot;master-b-1&quot;:{&quot;container&quot;:&quot;afscontainer1&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;s&quot;,&quot;adLoadedCallback&quot;:null,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;},&quot;slave-1-1&quot;:{&quot;container&quot;:&quot;afscontainer2&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;s&quot;,&quot;slaveNumber&quot;:1,&quot;adLoadedCallback&quot;:null,&quot;resultsPageBaseUrl&quot;:&quot;https://opengovus.com/new-york-business/&quot;,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;},&quot;master-1&quot;:{&quot;container&quot;:&quot;afscontainer1&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;m&quot;,&quot;adLoadedCallback&quot;:null,&quot;resultsPageBaseUrl&quot;:&quot;https://opengovus.com/new-york-business/&quot;,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;}}" id="master-a-1" src="https://syndicatedsearch.goog/afs/ads/i/iframe.html" data-observe="1" allow="attribution-reporting" style="visibility: hidden; height: 0px; display: block;"></iframe><iframe frameborder="0" marginwidth="0" marginheight="0" allowtransparency="true" scrolling="no" width="100%" name="{&quot;name&quot;:&quot;master-1&quot;,&quot;master-a-1&quot;:{&quot;container&quot;:&quot;afscontainer1&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;s&quot;,&quot;adLoadedCallback&quot;:null,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;},&quot;master-b-1&quot;:{&quot;container&quot;:&quot;afscontainer1&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;s&quot;,&quot;adLoadedCallback&quot;:null,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;},&quot;slave-1-1&quot;:{&quot;container&quot;:&quot;afscontainer2&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;s&quot;,&quot;slaveNumber&quot;:1,&quot;adLoadedCallback&quot;:null,&quot;resultsPageBaseUrl&quot;:&quot;https://opengovus.com/new-york-business/&quot;,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;},&quot;master-1&quot;:{&quot;container&quot;:&quot;afscontainer1&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;m&quot;,&quot;adLoadedCallback&quot;:null,&quot;resultsPageBaseUrl&quot;:&quot;https://opengovus.com/new-york-business/&quot;,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;}}" id="master-1" src="https://syndicatedsearch.goog/afs/ads?adsafe=low&amp;psid=8741508547&amp;client=pub-9163602253426716&amp;q=open%20government%20data&amp;r=m&amp;rpbu=https%3A%2F%2Fopengovus.com%2Fnew-york-business%2F&amp;type=0&amp;oe=UTF-8&amp;ie=UTF-8&amp;fexp=21404%2C17301437%2C17301438%2C17301442%2C17301548%2C17301266%2C72717108&amp;format=n2%7Cn2&amp;ad=n4&amp;nocache=3321751724021380&amp;num=0&amp;output=uds_ads_only&amp;v=3&amp;bsl=8&amp;pac=0&amp;u_his=2&amp;u_tz=-240&amp;dt=1751724021384&amp;u_w=1280&amp;u_h=720&amp;biw=1265&amp;bih=720&amp;psw=1265&amp;psh=5847&amp;frm=0&amp;uio=--&amp;cont=afscontainer1%7Cafscontainer2&amp;drt=0&amp;jsid=csa&amp;nfp=1&amp;jsv=777636663&amp;rurl=https%3A%2F%2Fopengovus.com%2Fnew-york-business" data-observe="1" allow="attribution-reporting" style="visibility: hidden; height: 0px; display: block;" title="Ads by Google"></iframe><iframe frameborder="0" marginwidth="0" marginheight="0" allowtransparency="true" scrolling="no" width="100%" name="master-b-1|{&quot;name&quot;:&quot;master-1&quot;,&quot;master-a-1&quot;:{&quot;container&quot;:&quot;afscontainer1&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;s&quot;,&quot;adLoadedCallback&quot;:null,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;},&quot;master-b-1&quot;:{&quot;container&quot;:&quot;afscontainer1&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;s&quot;,&quot;adLoadedCallback&quot;:null,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;},&quot;slave-1-1&quot;:{&quot;container&quot;:&quot;afscontainer2&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;s&quot;,&quot;slaveNumber&quot;:1,&quot;adLoadedCallback&quot;:null,&quot;resultsPageBaseUrl&quot;:&quot;https://opengovus.com/new-york-business/&quot;,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;},&quot;master-1&quot;:{&quot;container&quot;:&quot;afscontainer1&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;m&quot;,&quot;adLoadedCallback&quot;:null,&quot;resultsPageBaseUrl&quot;:&quot;https://opengovus.com/new-york-business/&quot;,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;}}" id="master-b-1" src="https://syndicatedsearch.goog/afs/ads/i/iframe.html" data-observe="1" allow="attribution-reporting" style="visibility: hidden; height: 0px; display: block;"></iframe></div>
+</div>
+<div class="panel" style="text-align:center">
+	<ins class="adsbygoogle" style="display: block; height: 463px;" data-ad-format="autorelaxed" data-ad-client="ca-pub-9163602253426716" data-full-width-responsive="true" data-ad-slot="1600766137" data-adsbygoogle-status="done"><div id="aswift_4_host" style="border: none; height: 463px; width: 926px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;"></div></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
+	</div>
+	<div class="d-none d-lg-block col-lg-2 sticky-top col-sidebar" style="z-index:100">
+	<div class="panel" style="text-align:center">
+	<ins class="adsbygoogle" style="display: block; height: 600px;" data-ad-client="ca-pub-9163602253426716" data-ad-slot="1938743627" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done" data-ad-status="filled"><div id="aswift_5_host" style="border: none; height: 600px; width: 166px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: visible;"><iframe id="aswift_5" name="aswift_5" browsingtopics="true" style="left:0;position:absolute;top:0;border:0;width:166px;height:600px;min-height:auto;max-height:none;min-width:auto;max-width:none;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="166" height="600" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting; run-ad-auction" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-9163602253426716&amp;output=html&amp;h=600&amp;slotname=1938743627&amp;adk=4142642371&amp;adf=1964782217&amp;pi=t.ma~as.1938743627&amp;w=166&amp;abgtt=9&amp;fwrn=4&amp;fwrnh=100&amp;lmt=1751724021&amp;rafmt=1&amp;format=166x600&amp;url=https%3A%2F%2Fopengovus.com%2Fnew-york-business&amp;fwr=0&amp;fwrattr=true&amp;rpe=1&amp;resp_fmts=4&amp;wgl=1&amp;uach=WyJtYWNPUyIsIjE1LjUuMCIsImFybSIsIiIsIjEzNi4wLjcxMDMuMjUiLG51bGwsMCxudWxsLCI2NCIsW1siTm90LkEvQnJhbmQiLCI5OS4wLjAuMCJdLFsiQ2hyb21pdW0iLCIxMzYuMC43MTAzLjI1Il1dLDBd&amp;dt=1751724021416&amp;bpp=1&amp;bdt=273&amp;idt=204&amp;shv=r20250630&amp;mjsv=m202507010101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie_enabled=1&amp;eoidce=1&amp;prev_fmts=1116x280%2C926x280%2C926x280&amp;correlator=3031505218649&amp;frm=20&amp;pv=1&amp;u_tz=-240&amp;u_his=2&amp;u_h=720&amp;u_w=1280&amp;u_ah=720&amp;u_aw=1280&amp;u_cd=30&amp;u_sd=1&amp;dmc=8&amp;adx=1025&amp;ady=385&amp;biw=1265&amp;bih=720&amp;scr_x=0&amp;scr_y=0&amp;eid=95360549%2C31093234%2C95332925%2C95353387%2C95362656%2C95365226%2C95365235%2C42533294%2C95359265%2C95365115%2C95365797&amp;oid=2&amp;pvsid=5558759904506744&amp;tmod=572913864&amp;uas=0&amp;nvt=1&amp;fc=896&amp;brdim=112%2C60%2C112%2C60%2C1280%2C0%2C1282%2C800%2C1280%2C720&amp;vis=1&amp;rsz=%7C%7CeE%7C&amp;abl=CS&amp;pfx=0&amp;fu=128&amp;bc=31&amp;bz=1&amp;td=1&amp;tdf=2&amp;psd=W251bGwsbnVsbCxudWxsLDNd&amp;nt=1&amp;ifi=6&amp;uci=a!6&amp;fsb=1&amp;dtd=205" data-google-container-id="a!6" tabindex="0" title="Advertisement" aria-label="Advertisement" data-google-query-id="CKqWxMDwpY4DFf4qiAkd95gixA" data-load-complete="true"></iframe></div></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
+<div class="panel" style="text-align:center">
+	<div id="afscontainer2"><iframe frameborder="0" marginwidth="0" marginheight="0" allowtransparency="true" scrolling="no" width="100%" name="slave-1-1|{&quot;name&quot;:&quot;master-1&quot;,&quot;master-a-1&quot;:{&quot;container&quot;:&quot;afscontainer1&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;s&quot;,&quot;adLoadedCallback&quot;:null,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;},&quot;master-b-1&quot;:{&quot;container&quot;:&quot;afscontainer1&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;s&quot;,&quot;adLoadedCallback&quot;:null,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;},&quot;slave-1-1&quot;:{&quot;container&quot;:&quot;afscontainer2&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;s&quot;,&quot;slaveNumber&quot;:1,&quot;adLoadedCallback&quot;:null,&quot;resultsPageBaseUrl&quot;:&quot;https://opengovus.com/new-york-business/&quot;,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;},&quot;master-1&quot;:{&quot;container&quot;:&quot;afscontainer1&quot;,&quot;styleId&quot;:&quot;8741508547&quot;,&quot;fexp&quot;:&quot;21404,17301437,17301438,17301442,17301548,17301266,72717108&quot;,&quot;masterNumber&quot;:1,&quot;number&quot;:0,&quot;pubId&quot;:&quot;pub-9163602253426716&quot;,&quot;query&quot;:&quot;open government data&quot;,&quot;role&quot;:&quot;m&quot;,&quot;adLoadedCallback&quot;:null,&quot;resultsPageBaseUrl&quot;:&quot;https://opengovus.com/new-york-business/&quot;,&quot;resultsPageQueryParam&quot;:&quot;query&quot;,&quot;ie&quot;:&quot;UTF-8&quot;,&quot;maxTop&quot;:0,&quot;minTop&quot;:0,&quot;oe&quot;:&quot;UTF-8&quot;,&quot;type&quot;:&quot;ads&quot;,&quot;linkTarget&quot;:&quot;_top&quot;}}" id="slave-1-1" src="https://syndicatedsearch.goog/afs/ads/i/iframe.html" data-observe="1" allow="attribution-reporting" style="visibility: hidden; height: 0px; display: block;"></iframe></div>
+</div>
+	</div>
+</div>
+	<hr>
+	<footer>
+		<ul class="list-inline">
+			<li class="list-inline-item"><a target="_blank" href="https://opengovus.com/"><strong><span style="color:darkblue">OPEN</span><span style="color:brown">GOV</span><span style="color:darkred">US</span></strong></a></li>
+						<li class="list-inline-item"><a target="_blank" href="https://opengovus.com/contact?url=https%3A%2F%2Fopengovus.com%2Fnew-york-business%2F">Contact</a></li>
+					</ul>
+	</footer>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+<script type="text/javascript" charset="utf-8">
+		var pageOptions = {
+			"pubId": "partner-pub-9163602253426716",
+			"query": "open government data",
+			"styleId": "8741508547",
+			"resultsPageBaseUrl": "https://opengovus.com/new-york-business/",
+			"adsafe": "low"
+		};
+		var adblock1 = {
+			"container": "afscontainer1"
+		};
+		var adblock2 = {
+			"container": "afscontainer2"
+		};
+
+		_googCsa('ads', pageOptions, adblock1, adblock2);
+
+
+
+jQuery('#resultModal').on('show.bs.modal', function (event) {
+	var link = jQuery(event.relatedTarget);
+	var url = link.data('href');
+	var modal = jQuery(this);
+	modal.find('.modal-title').text(link.data('title'));
+
+	return;
+	jQuery.ajax({
+		url: url,
+		data: para,
+		dataType: "html",
+		success: function(ret, status, xhr) {
+			jQuery(this).find('.modal-body').text(ret);
+		}
+	});
+});
+
+window.addEventListener("load", function() {
+	const mymodal_tours = document.getElementById('mymodal_tours');
+	if (! mymodal_tours)
+		return;
+	mymodal_tours.addEventListener('show.bs.modal', event => {
+		modal = event.target;
+		const children = modal.getElementsByTagName('iframe');
+		for (var i = 0; i < children.length; i++)
+		{
+			children[i].setAttribute("src", children[i].getAttribute("data-src"));
+		}
+	});
+
+	/*
+	elems = document.getElementsByClassName('col-sidebar');
+	if (elems)
+	{
+		sidebar = elems[0];
+		if (window.getComputedStyle(sidebar).display == "none")
+		{
+			const children = sidebar.getElementsByClassName('ins');
+			for (var i = 0; i < children.length; i++)
+			{
+				children[i].remove();
+				//children[i].style.display = "none";
+				//children[i].setAttribute("data-ad-format") = "";
+			}			
+		}
+	}*/
+	
+});
+
+
+
+
+function
+myform_submit(e) {
+	e.preventDefault();
+	var url = "https://opengovus.com/ajax";	
+	var para = {};
+	var submit;
+	var form = e.target;
+
+	if (typeof TRACKING_DATA !== 'undefined')
+		para = TRACKING_DATA;
+
+	para["ajax_type"] = "form";
+	para["url"] = window.location.href;
+	para["base"] = "new-york-business";
+	para["slug"] = "";
+	para["form"] = form.id;
+
+	for (var i = 0; i < form.elements.length; i++) {
+		var input = form.elements[i];
+		if (input.name == "submit")
+			submit = input;
+		else
+			para[input.name] = input.value;
+	}
+
+	jQuery.ajax({
+		url: url,
+		data: para,
+		type: "POST",
+		success: function(data, status, xhr) {
+			submit.setAttribute("disabled", "");
+			submit.innerHTML = "Thank you for submitting your request";
+
+			if ((form.id == "myform-lead") && 
+				(typeof TRACKING_DATA !== 'undefined')
+			   )
+			{
+				alert("Thank you for your submission, you will be contacted shortly by a local real estate expert.");
+				track_request(TRACKING_DATA["source"], "email", TRACKING_DATA["source_id"]);
+			}
+		}
+	});
+}
+
+
+window.onload = function() {
+	for (var i = 0; i < document.forms.length; i++)
+	{
+		var form = document.forms[i];
+		var id = form.id;
+		if (id.startsWith("myform"))
+			form.addEventListener('submit', myform_submit);
+	}
+};
+
+
+jQuery('#submitButton').click(function() {
+	var url = "https://opengovus.com/ajax";
+	
+	var para = {
+				type : "comment",
+				db : "opendatanewyork",
+				url : "https://opengovus.com/new-york-business/",
+				Name : jQuery('#commentName').val(),
+				Address : jQuery('#commentAddress').val(),
+				Telephone : jQuery('#commentPhone').val(),
+				Website : jQuery('#commentWebsite').val(),
+				Email : jQuery('#commentEmail').val(),
+				Description : jQuery('#commentDescription').val()
+			};
+
+	jQuery.ajax({
+		url: url,
+		data: para,
+		type: "POST",
+		success: function(data, status, xhr) {
+			jQuery('#submitButton').attr("disabled", "disabled");
+			jQuery('#submitButton').text("Thank you for submitting your comments.");
+		}
+	});
+});
+
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-109960425-1', 'auto');
+	var page = document.location.pathname;
+	page = page.replace(/\/([a-z\-]+)\/(.+)/g, '/$1/');
+	ga('send', 'pageview', page + document.location.search);
+	
+</script>
+
+
+<ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;" data-ad-status="unfilled"><div id="aswift_6_host" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;"><iframe id="aswift_6" name="aswift_6" browsingtopics="true" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;min-height:auto;max-height:none;min-width:auto;max-width:none;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting; run-ad-auction" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-9163602253426716&amp;output=html&amp;adk=1812271804&amp;adf=3025194257&amp;abgtt=9&amp;lmt=1751724021&amp;plat=3%3A16%2C4%3A16%2C9%3A32776%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A34635776%2C32%3A32%2C41%3A32%2C42%3A32&amp;format=0x0&amp;url=https%3A%2F%2Fopengovus.com%2Fnew-york-business&amp;pra=7&amp;wgl=1&amp;aihb=0&amp;aiudt=1&amp;asro=0&amp;aifxl=29_18~30_19&amp;aiapm=0.1542&amp;aiapmd=0.1542&amp;aiapmi=0.16&amp;aiapmid=0.16&amp;aiact=0.5423&amp;aiactd=0.5423&amp;aicct=0.7&amp;aicctd=0.5799&amp;ailct=0.5849&amp;ailctd=0.65&amp;aimart=4&amp;aimartd=4&amp;uach=WyJtYWNPUyIsIjE1LjUuMCIsImFybSIsIiIsIjEzNi4wLjcxMDMuMjUiLG51bGwsMCxudWxsLCI2NCIsW1siTm90LkEvQnJhbmQiLCI5OS4wLjAuMCJdLFsiQ2hyb21pdW0iLCIxMzYuMC43MTAzLjI1Il1dLDBd&amp;dt=1751724021417&amp;bpp=2&amp;bdt=274&amp;idt=206&amp;shv=r20250630&amp;mjsv=m202507010101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie_enabled=1&amp;eoidce=1&amp;prev_fmts=1116x280%2C926x280%2C926x280%2C166x600&amp;nras=1&amp;correlator=3031505218649&amp;frm=20&amp;pv=1&amp;u_tz=-240&amp;u_his=2&amp;u_h=720&amp;u_w=1280&amp;u_ah=720&amp;u_aw=1280&amp;u_cd=30&amp;u_sd=1&amp;dmc=8&amp;adx=-12245933&amp;ady=-12245933&amp;biw=1265&amp;bih=720&amp;scr_x=0&amp;scr_y=0&amp;eid=95360549%2C31093234%2C95332925%2C95353387%2C95362656%2C95365226%2C95365235%2C42533294%2C95359265%2C95365115%2C95365797&amp;oid=2&amp;pvsid=5558759904506744&amp;tmod=572913864&amp;uas=0&amp;nvt=1&amp;fsapi=1&amp;fc=896&amp;brdim=112%2C60%2C112%2C60%2C1280%2C0%2C1282%2C800%2C1280%2C720&amp;vis=1&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=32768&amp;bc=31&amp;bz=1&amp;td=1&amp;tdf=2&amp;psd=W251bGwsbnVsbCxudWxsLDNd&amp;nt=1&amp;ifi=7&amp;uci=a!7&amp;fsb=1&amp;dtd=211" data-google-container-id="a!7" tabindex="0" title="Advertisement" aria-label="Advertisement" data-load-complete="true"></iframe></div></ins><iframe name="googlefcPresent" style="display: none; width: 0px; height: 0px; border: none; z-index: -1000; left: -1000px; top: -1000px;"></iframe><ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" data-anchor-status="displayed" data-ad-status="filled" data-anchor-shown="true" style="display: block; width: auto !important; height: 95px !important; bottom: 0px; clear: none !important; float: none !important; left: 50%; margin: 0px !important; max-height: none !important; max-width: none !important; opacity: 1; overflow: visible !important; padding: 0px !important; position: fixed; right: auto !important; top: auto !important; vertical-align: baseline !important; visibility: visible !important; z-index: 2147483647; transform: translateX(-50%); box-shadow: rgba(0, 0, 0, 0.5) 0px -4px 12px -4px, rgba(0, 0, 0, 0.3) 0px 4px 8px -3px; border-radius: 5px; background: rgb(250, 250, 250) !important;"><div class="grippy-host"></div><div id="aswift_9_host" style="border: none !important; height: 90px !important; width: 100% !important; margin: 0px !important; padding: 0px !important; position: relative !important; visibility: visible !important; background-color: transparent !important; display: inline-block !important; inset: auto !important; clear: none !important; float: none !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; vertical-align: baseline !important; z-index: auto !important;"><iframe id="aswift_9" name="aswift_9" browsingtopics="true" style="min-height: auto; max-height: none; min-width: auto; max-width: none; width: 728px !important; height: 90px !important; display: block; margin: 0px auto;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting; run-ad-auction" src="https://googleads.g.doubleclick.net/pagead/html/r20250630/r20190131/zrt_lookup_fy2021.html#RS-1-&amp;adk=1812271801&amp;client=ca-pub-9163602253426716&amp;fa=1&amp;ifi=10&amp;uci=a!a&amp;btvi=3" data-google-container-id="a!a" tabindex="0" title="Advertisement" aria-label="Advertisement" data-google-query-id="CIKyxMDwpY4DFWkQiAkdh2ou1A" data-load-complete="true"></iframe></div></ins><iframe name="__tcfapiLocator" src="about:blank" style="display: none; width: 0px; height: 0px; border: none; z-index: -1000; left: -1000px; top: -1000px;"></iframe><iframe name="googlefcInactive" src="about:blank" style="display: none; width: 0px; height: 0px; border: none; z-index: -1000; left: -1000px; top: -1000px;"></iframe><iframe name="googlefcLoaded" src="about:blank" style="display: none; width: 0px; height: 0px; border: none; z-index: -1000; left: -1000px; top: -1000px;"></iframe><iframe src="https://www.google.com/recaptcha/api2/aframe" width="0" height="0" style="display: none;"></iframe></body><iframe id="google_esf" name="google_esf" src="https://googleads.g.doubleclick.net/pagead/html/r20250630/r20190131/zrt_lookup_fy2021.html" style="display: none;"></iframe><ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important; width: 100vw !important; height: 100vh !important; inset: 0px auto auto 0px !important; clear: none !important; float: none !important; margin: 0px !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; padding: 0px !important; position: fixed !important; vertical-align: baseline !important; visibility: visible !important; z-index: 2147483647 !important; background: transparent !important;" aria-hidden="true" data-ad-status="filled" data-vignette-loaded="true"><div id="aswift_8_host" style="border: none !important; height: 100vh !important; width: 100vw !important; margin: 0px !important; padding: 0px !important; position: relative !important; visibility: visible !important; background-color: transparent !important; display: inline-block !important; inset: auto !important; clear: none !important; float: none !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; vertical-align: baseline !important; z-index: auto !important;"><iframe id="aswift_8" name="aswift_8" browsingtopics="true" style="min-height: auto !important; max-height: none !important; min-width: auto !important; max-width: none !important; width: 100vw !important; height: 100vh !important; inset: 0px auto auto 0px !important; position: absolute !important; clear: none !important; display: inline !important; float: none !important; margin: 0px !important; opacity: 1 !important; overflow: visible !important; padding: 0px !important; vertical-align: baseline !important; visibility: visible !important; z-index: auto !important;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="" height="" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting; run-ad-auction" src="https://googleads.g.doubleclick.net/pagead/html/r20250630/r20190131/zrt_lookup_fy2021.html#RS-0-&amp;adk=1812271808&amp;client=ca-pub-9163602253426716&amp;fa=8&amp;ifi=9&amp;uci=a!9" data-google-container-id="a!9" tabindex="0" title="Advertisement" aria-label="Advertisement" data-google-query-id="CICyxMDwpY4DFWkQiAkdh2ou1A" data-load-complete="true"></iframe></div></ins></html>

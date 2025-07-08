@@ -10,8 +10,3 @@ __pycache__/
 env/
 venv/
 
-# Scraper extras (optional)
-extras/
-*.html
-*.png
-*.csv
