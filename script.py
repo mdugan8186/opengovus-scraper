@@ -78,7 +78,7 @@ def extract_listings(html):
     return listings
 
 
-def save_to_csv(listings, filename="opengovus_listings.csv"):
+def save_to_csv(listings, filename="output/opengovus_listings.csv"):
     """
     Saves the collected listings to a CSV file.
     """
