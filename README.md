@@ -1,102 +1,135 @@
 # OpenGovUS Business Scraper
 
-A Python web scraper that collects business registration data from [OpenGovUS - New York Businesses](https://opengovus.com/new-york-business). It uses Playwright for dynamic rendering, BeautifulSoup for parsing, and pandas for post-processing and analysis.
+_Structured business listings → clean CSVs, with post-processing & summaries._
+
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Last Commit](https://img.shields.io/github/last-commit/mdugan8186/opengovus-scraper)
+
+A production-style Python scraper that collects business registration data from **OpenGovUS** and writes tidy CSVs. It renders pages with **Playwright**, parses with **BeautifulSoup**, and includes optional **post-processing** and **summary** steps so clients can use the data immediately.
 
 ---
 
-## 🚀 Features
+## 🔍 Key Features
 
-- Extracts business name, address, category, and registration date
-- Handles multiple pages via pagination
-- Bypasses basic bot detection with stealth techniques
-- Post-processes the data to check for duplicates and clean values
-- Generates a plain-text and markdown summary of the dataset
+- **Dynamic rendering** with Playwright (Chromium) to handle JS.
+- **Structured fields** exported to CSV: `Business Name`, `Address`, `Category`, `Date Registered`.
+- **Pagination** across multiple result pages.
+- **Basic stealth** tactics to reduce trivial bot detection.
+- **Post-processing** script to dedupe, clean, and sort records.
+- **Summary** generator (plain text + Markdown) for quick insights.
 
 ---
 
-## 🛠️ Installation
+## ⚙️ Quick Start
 
-### 1. Clone the Repository
+### Prerequisites
+
+- Python **3.10+**
+- Git
+- Playwright browsers (install step below)
+
+### Installation
 
 ```bash
+# 1) Clone
 git clone https://github.com/mdugan8186/opengovus-scraper.git
 cd opengovus-scraper
-```
 
-### 2. Install Python Dependencies
+# 2) (optional) Virtual environment
+python -m venv .venv
+# macOS/Linux:
+source .venv/bin/activate
+# Windows:
+.venv\Scripts\activate
 
-We recommend using Python 3.9+ and a virtual environment.
-
-```bash
+# 3) Install dependencies
 pip install -r requirements.txt
+
+# 4) Install Playwright browsers (first run only)
+python -m playwright install chromium
 ```
 
-> You must also install Playwright dependencies and browser binaries:
-
-```bash
-playwright install
-```
-
----
-
-## 📦 Project Structure
-
-```
-opengovus-scraper/
-├── script.py                # Main scraper
-├── postprocess.py           # Data cleaning script
-├── summarize_data.py        # Summary report generator
-├── requirements.txt
-├── output/                  # Raw output files (CSV, summary.txt)
-│   └── opengovus_listings.csv
-│   └── summary.txt
-├── samples/                 # Cleaned and summarized data
-│   └── cleaned_listings.csv
-│   └── summary.md
-└── extras/                  # Optional files: screenshots, raw HTML, etc.
-```
-
----
-
-## 🧪 How to Run
-
-### 1. Scrape the Data
+### Run the Scraper
 
 ```bash
 python script.py
 ```
 
-This launches a **visible browser window** (not headless) to mimic real user behavior and avoid bot detection.
+- Writes the raw CSV to: `output/opengovus_listings.csv`
 
-### 2. Clean the Data
+### Optional: Post-process & Summarize
 
 ```bash
+# Clean & sort, save to samples/cleaned_listings.csv
 python postprocess.py
-```
 
-Saves cleaned listings to `samples/cleaned_listings.csv`.
-
-### 3. Generate a Summary Report
-
-```bash
+# Create text + markdown summaries from the cleaned CSV
 python summarize_data.py
 ```
 
-Outputs plain text to `output/summary.txt` and markdown version to `samples/summary.md`.
+- Outputs:
+  - `samples/cleaned_listings.csv`
+  - `output/summary.txt`
+  - `samples/summary.md`
 
 ---
 
-## 📂 Output Format
+## 📁 Output
 
-CSV files contain the following columns:
+- **Primary CSV**: `output/opengovus_listings.csv`
+- **Cleaned CSV** (optional): `samples/cleaned_listings.csv`
 
-- `Business Name`
-- `Address`
-- `Category`
-- `Date Registered`
+**Columns**
+
+```
+Business Name, Address, Category, Date Registered
+```
 
 ---
 
-## 👤 Author
+## 🧩 Configuration & Selectors
 
-[Michael Dugan](https://github.com/mdugan8186)
+- CSS selectors and parsing logic live in the code (`script.py`). If the site HTML changes, update the selectors there.
+- For long-term maintainability, you can extract selectors into a `config/` JSON (future enhancement).
+
+---
+
+## 🎥 Demo
+
+Example of the scraper output:
+
+![OpenGovUS Output](media/opengovus-scraper.png)
+
+The full dataset is saved as a CSV: [`output/opengovus_listings.csv`](output/opengovus_listings.csv)
+
+---
+
+## 🧪 Testing & Dev Notes
+
+See **TESTING.md** for a step-by-step sanity flow (render → extract → clean → summarize), selector maintenance notes, and data-quality checks.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Playwright (Python)** for rendering
+- **BeautifulSoup** for parsing
+- **pandas** for cleaning & summaries
+- **CSV** outputs for easy analysis
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**. See [`LICENSE`](./LICENSE).
+
+---
+
+## 👤 About
+
+**Mike Dugan** — Python Web Scraper & Automation Developer
+
+- GitHub: [@mdugan8186](https://github.com/mdugan8186)
+- Portfolio Website: https://mdugan8186.github.io/scraping-portfolio/
+- Email: **mdugan8186.work@gmail.com**
