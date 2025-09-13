@@ -120,6 +120,13 @@ See **TESTING.md** for a step-by-step sanity flow (render → extract → clean 
 
 ---
 
+### ⚖️ Legal & Ethical Use
+
+This scraper includes basic measures (delays, browser automation) to reduce trivial blocking and ensure reliable data collection.  
+It is provided for **educational and demonstration purposes only**. Please review and comply with the target site’s terms of service and robots.txt before running it at scale.
+
+---
+
 ## 📄 License
 
 This project is licensed under the **MIT License**. See [`LICENSE`](./LICENSE).
