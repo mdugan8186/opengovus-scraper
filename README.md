@@ -137,6 +137,7 @@ This project is licensed under the **MIT License**. See [`LICENSE`](./LICENSE).
 
 **Mike Dugan** — Python Web Scraper & Automation Developer
 
-- GitHub: [@mdugan8186](https://github.com/mdugan8186)
-- Portfolio Website: https://mdugan8186.github.io/scraping-portfolio/
-- Email: **mdugan8186.work@gmail.com**
+- **GitHub:** [@mdugan8186](https://github.com/mdugan8186)
+- **Portfolio Website:** [scraping-portfolio](https://mdugan8186.github.io/scraping-portfolio/)
+- **Fiverr:** [Hire Me for a Custom Web Scraper](https://www.fiverr.com/s/99aN6vA)
+- **Email:** [mdugan8186.work@gmail.com](mailto:mdugan8186.work@gmail.com)
