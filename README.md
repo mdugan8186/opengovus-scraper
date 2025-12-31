@@ -139,6 +139,7 @@ This project is licensed under the **MIT License**. See [`LICENSE`](./LICENSE).
 
 - **GitHub:** [@mdugan8186](https://github.com/mdugan8186)
 - **Portfolio Website:** [scraping-portfolio](https://mdugan8186.github.io/scraping-portfolio/)
+- **LinkIn:** [View my profile](https://www.linkedin.com/in/mike-dugan-8aa59b398)
 - **Fiverr:** [Hire me for web scraping and custom scrapers](https://www.fiverr.com/mdugan8186)
 - **Upwork:** [ Hire me for web scraping and Python automation](https://www.upwork.com/freelancers/~019a69129c6a8c707c?mp_source=share)
 - **Email:** [mdugan8186.work@gmail.com](mailto:mdugan8186.work@gmail.com)
